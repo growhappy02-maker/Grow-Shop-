@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Grow Shop - Quality products, friendly service and a better shopping experience.">
+  <title>Grow Shop | Your Everyday Shopping Destination</title>
+  <style>
+    :root{
+      --green:#176b3a;
+      --green2:#2fa65a;
+      --dark:#10251a;
+      --cream:#f7fbf5;
+      --white:#fff;
+      --muted:#66736b;
+      --shadow:0 15px 45px rgba(16,37,26,.10);
+      --radius:22px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Arial,Helvetica,sans-serif;color:var(--dark);background:var(--cream);line-height:1.6}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1120px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid #e9efe9}
+    nav{height:72px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-size:1.45rem;font-weight:800;color:var(--green);display:flex;align-items:center;gap:9px}
+    .logo-mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--green),var(--green2));display:grid;place-items:center;color:white;font-size:20px}
+    .links{display:flex;gap:28px;align-items:center}
+    .links a{font-size:.95rem;font-weight:600;color:#3e4d44}
+    .links a:hover{color:var(--green)}
+    .menu{display:none;border:0;background:none;font-size:26px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:13px;font-weight:700;border:0;cursor:pointer;transition:.2s}
+    .btn-primary{background:var(--green);color:#fff;box-shadow:0 10px 25px rgba(23,107,58,.22)}
+    .btn-primary:hover{transform:translateY(-2px);background:#11582f}
+    .btn-light{background:#fff;color:var(--green);border:1px solid #dbe8dd}
+    .hero{padding:90px 0 70px;background:radial-gradient(circle at 80% 15%,#dff4e4 0,transparent 32%),linear-gradient(180deg,#f8fcf7,#eef8ef)}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:55px;align-items:center}
+    .tag{display:inline-block;background:#e1f4e6;color:var(--green);padding:7px 12px;border-radius:99px;font-weight:700;font-size:.82rem;margin-bottom:18px}
+    h1{font-size:clamp(2.6rem,6vw,4.8rem);line-height:1.02;letter-spacing:-3px;margin-bottom:22px}
+    h1 span{color:var(--green)}
+    .hero p{font-size:1.08rem;color:var(--muted);max-width:580px;margin-bottom:30px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-card{min-height:420px;border-radius:32px;background:linear-gradient(145deg,#1d7b45,#73c77d);box-shadow:var(--shadow);position:relative;overflow:hidden;padding:30px;display:flex;align-items:flex-end}
+    .hero-card:before,.hero-card:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+    .hero-card:before{width:300px;height:300px;right:-80px;top:-70px}
+    .hero-card:after{width:220px;height:220px;left:-80px;bottom:-80px}
+    .product-visual{position:absolute;inset:50px;display:grid;place-items:center;font-size:120px;filter:drop-shadow(0 20px 20px rgba(0,0,0,.16))}
+    .hero-info{position:relative;z-index:2;background:rgba(255,255,255,.94);padding:20px;border-radius:20px;width:100%}
+    .hero-info small{color:var(--muted)}
+    section{padding:85px 0}
+    .section-head{text-align:center;max-width:650px;margin:0 auto 45px}
+    .section-head h2{font-size:2.35rem;line-height:1.15;margin-bottom:12px}
+    .section-head p{color:var(--muted)}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .card{background:#fff;border:1px solid #e7eee8;border-radius:var(--radius);padding:28px;box-shadow:0 8px 30px rgba(16,37,26,.05)}
+    .icon{width:52px;height:52px;border-radius:16px;background:#e7f6ea;display:grid;place-items:center;font-size:25px;margin-bottom:18px}
+    .card h3{margin-bottom:8px}.card p{color:var(--muted)}
+    .products{background:#fff}
+    .product-card{padding:0;overflow:hidden}
+    .product-img{height:190px;background:linear-gradient(135deg,#e8f6eb,#cbe8d0);display:grid;place-items:center;font-size:72px}
+    .product-body{padding:22px}.product-body p{margin:5px 0 14px;color:var(--muted);font-size:.92rem}
+    .price{font-weight:800;color:var(--green);font-size:1.15rem}
+    .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:55px;align-items:center}
+    .about-box{background:linear-gradient(145deg,#176b3a,#2fa65a);color:#fff;border-radius:30px;padding:45px;min-height:350px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:var(--shadow)}
+    .about-box strong{font-size:4rem;line-height:1}
+    .about-text h2{font-size:2.5rem;line-height:1.15;margin-bottom:18px}
+    .about-text p{color:var(--muted);margin-bottom:18px}
+    .checks{display:grid;gap:10px}.checks div{font-weight:700}
+    .contact{background:#10251a;color:#fff}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px}
+    .contact h2{font-size:2.5rem;line-height:1.15;margin-bottom:15px}
+    .contact p{color:#c5d3c9;margin-bottom:25px}
+    .contact-form{background:#fff;padding:28px;border-radius:22px;color:var(--dark)}
+    .field{margin-bottom:14px}.field label{display:block;font-size:.85rem;font-weight:700;margin-bottom:6px}
+    input,textarea{width:100%;padding:13px 14px;border:1px solid #dbe4dd;border-radius:11px;font:inherit;outline:none}
+    input:focus,textarea:focus{border-color:var(--green2)}
+    textarea{min-height:110px;resize:vertical}
+    footer{background:#0b1a11;color:#aebdb2;padding:28px 0;text-align:center;font-size:.9rem}
+    .whatsapp{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-size:27px;box-shadow:0 10px 25px rgba(0,0,0,.2);z-index:999}
+    @media(max-width:800px){
+      .links{display:none;position:absolute;top:72px;left:0;right:0;background:#fff;padding:20px;flex-direction:column;box-shadow:0 15px 30px rgba(0,0,0,.08)}
+      .links.open{display:flex}.menu{display:block}
+      .hero-grid,.about,.contact-grid{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .hero{padding-top:60px}.hero-card{min-height:330px}
+      section{padding:65px 0}
+      h1{letter-spacing:-2px}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <a class="logo" href="#home"><span class="logo-mark">G</span> Grow Shop</a>
+      <button class="menu" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+      <div class="links" id="navLinks">
+        <a href="#home" onclick="closeMenu()">Home</a>
+        <a href="#services" onclick="closeMenu()">Services</a>
+        <a href="#products" onclick="closeMenu()">Products</a>
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#contact" onclick="closeMenu()">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="tag">✨ Quality • Value • Trust</span>
+      <h1>Grow with <span>Grow Shop.</span></h1>
+      <p>A clean, modern shopping experience for quality products, friendly service and everyday value.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#products">Explore Products →</a>
+        <a class="btn btn-light" href="#contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="product-visual">🛍️</div>
+      <div class="hero-info">
+        <strong>Everything you need, in one place.</strong><br>
+        <small>Discover products selected with care.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-head">
+      <h2>Why customers choose us</h2>
+      <p>We keep shopping simple, reliable and customer-friendly.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="icon">⭐</div><h3>Quality First</h3><p>Products selected with attention to quality and value.</p></div>
+      <div class="card"><div class="icon">🤝</div><h3>Friendly Service</h3><p>Helpful support and a shopping experience built around you.</p></div>
+      <div class="card"><div class="icon">🚚</div><h3>Easy Ordering</h3><p>Quickly ask about products and place your order with ease.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="container">
+    <div class="section-head">
+      <h2>Featured Products</h2>
+      <p>Replace these sample items with your real products and prices.</p>
+    </div>
+    <div class="cards">
+      <div class="card product-card"><div class="product-img">🌱</div><div class="product-body"><h3>Coffee</h3><p>Fresh coffee, carefully selected.</p><span class="price">₹199</span></div></div>
+      <div class="card product-card"><div class="product-img">🪴</div><div class="product-body"><h3>Product Two</h3><p>A customer-favourite choice for everyday needs.</p><span class="price">₹499</span></div></div>
+      <div class="card product-card"><div class="product-img">🎁</div><div class="product-body"><h3>Product Three</h3><p>Great value with a simple, premium experience.</p><span class="price">₹699</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about">
+    <div class="about-box">
+      <strong>Grow.</strong>
+      <span>Better shopping starts with better service.</span>
+    </div>
+    <div class="about-text">
+      <h2>More than a shop. A place to grow.</h2>
+      <p>Grow Shop is designed around quality, trust and convenience. Add your story here to tell customers what makes your business special.</p>
+      <div class="checks">
+        <div>✓ Quality-focused products</div>
+        <div>✓ Transparent pricing</div>
+        <div>✓ Customer-first support</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div>
+      <h2>Let's talk about your next order.</h2>
+      <p>Have a question or want to know more about a product? Send us a message.</p>
+      <a class="btn btn-primary" href="https://wa.me/918474066417" target="_blank">💬 WhatsApp Us</a>
+    </div>
+    <form class="contact-form" onsubmit="sendMessage(event)">
+      <div class="field"><label for="name">Name</label><input id="name" required placeholder="Your name"></div>
+      <div class="field"><label for="phone">Phone</label><input id="phone" required placeholder="Your phone number"></div>
+      <div class="field"><label for="message">Message</label><textarea id="message" required placeholder="How can we help?"></textarea></div>
+      <button class="btn btn-primary" type="submit">Send Enquiry</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  © <span id="year"></span> Grow Shop. All rights reserved.
+</footer>
+
+<a class="whatsapp" href="https://wa.me/918474066417" target="_blank" aria-label="WhatsApp">◉</a>
+
+<script>
+  function toggleMenu(){ document.getElementById('navLinks').classList.toggle('open'); }
+  function closeMenu(){ document.getElementById('navLinks').classList.remove('open'); }
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function sendMessage(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const shopNumber = '918474066417'; // WhatsApp number: 8474066417
+    const text = `Hello Grow Shop!%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AMessage: ${encodeURIComponent(message)}`;
+    window.open(`https://wa.me/${shopNumber}?text=${text}`, '_blank');
+  }
+</script>
+</body>
+</html>
